@@ -1,4 +1,19 @@
 0x00. AirBnB clone - The console
+This project explain what a command interpreter mean
+
+What Is A Command Interpreter?
+
+This is how we manage the objects of our project:
+
+1. Generate a fresh object (for example, a new User or a novel Place).
+2. Fetch an object from a file, a database, and so forth.
+3. Modify attributes of an object.
+4. Perform actions involving objects (such as counting, computing statistics, etc.).
+5. Destroy an object
+
+
+
+
 
 Background Context
 Welcome to the AirBnB clone project!
