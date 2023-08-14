@@ -12,7 +12,7 @@ class BaseModel:
     Base Class of AirBnb Console
     """
 
-    def _init_(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         Init of Object
             Attributes:
@@ -28,7 +28,6 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
-            models.storage.save()
         # each new instance created is added to the storage variable __objects
         else:
             kwargs["created_at"] = datetime.strptime(kwargs["created_at"],
@@ -39,13 +38,13 @@ class BaseModel:
                 if "_class_" not in key:
                     setattr(self, key, val)
 
-    def _str_(self):
+    def __str__(self):
         """
         print the instance
         :return:
         """
-        return "[{:s}] ({:s}) {}".format(self._class.name_, self.id,
-                                         self._dict_)
+        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
+                                         self.__dict__)
 
     def save(self):
         """
@@ -60,8 +59,8 @@ class BaseModel:
             convert  self dict and other public instance
                 Return: Dictionary
         """
-        dic = dict(self._dict_)
-        dic['_class'] = self.class.name_
+        dic = self.__dict__.copy()
+        dic['__class__'] = self.__class__.__name__
         dic['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         dic['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         return dic

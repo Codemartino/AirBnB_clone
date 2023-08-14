@@ -37,7 +37,7 @@ class FileStorage:
         # att of that obj/instance
         dict_attrs = obj.to_dict()
         # generate some thing like "BaseModel.135489484231"
-        new_key = "{}.{}".format(dict_attrs["_class_"], dict_attrs["id"])
+        new_key = "{}.{}".format(dict_attrs["__class__"], dict_attrs["id"])
         # in the class att we append that obj
         self.__objects[new_key] = obj
         # print("from new", FileStorage.__objects)
@@ -75,8 +75,8 @@ class FileStorage:
                     # if the key_file is not in the storage.keys()
                     # create a new instance and pass it argument and kwargs
                     if file_key not in FileStorage.__objects.keys():
-                        className = dict_obj["_class_"]
-                        newInst = eval("{}(**dict_obj)".format(className))
+                        className = dict_obj["__class__"]
+                        newInst = BaseModel(**dict_obj)
                         self.new(newInst)
         except FileNotFoundError:
             pass
