@@ -60,7 +60,7 @@ class BaseModel:
                 Return: Dictionary
         """
         dic = self.__dict__.copy()
-        dic['__class__'] = self.__class__.__name__
+        dic['_class_'] = self.__class__.__name__
         dic['updated_at'] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         dic['created_at'] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         return dic
